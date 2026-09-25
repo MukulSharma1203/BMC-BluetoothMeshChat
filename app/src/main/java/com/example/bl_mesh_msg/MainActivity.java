@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements MeshManager.MeshE
     public void onPeerDiscovered(String deviceAddress) {
         runOnUiThread(() -> {
             discoveredPeers.add(deviceAddress);
-            tvPeerCount.setText("Discovered Peers: " + discoveredPeers.size());
+            tvPeerCount.setText("ACTIVE_PEERS: " + discoveredPeers.size());
         });
     }
 

@@ -1,5 +1,6 @@
 package com.example.bl_mesh_msg.model;
 
+import android.graphics.Typeface;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -24,14 +25,16 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
     public MessageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         TextView textView = new TextView(parent.getContext());
         textView.setPadding(16, 12, 16, 12);
-        textView.setTextSize(14f); // Fixed: Changed 14sp to 14f
+        textView.setTextSize(13f);
+        textView.setTextColor(0xFF00FF66); // Neon Green
+        textView.setTypeface(Typeface.MONOSPACE);
         return new MessageViewHolder(textView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MessageViewHolder holder, int position) {
         Message msg = messageList.get(position);
-        String formattedText = "[" + msg.getSenderId() + " ➔ " + msg.getReceiverId() + "]: " + msg.getText() + " (TTL: " + msg.getTtl() + ")";
+        String formattedText = msg.getSenderId() + " : " + msg.getText();
         holder.textView.setText(formattedText);
     }
 

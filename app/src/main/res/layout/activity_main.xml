@@ -3,45 +3,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="#050801"
     android:fitsSystemWindows="true"
+    android:orientation="vertical"
     android:paddingLeft="12dp"
     android:paddingTop="24dp"
     android:paddingRight="12dp"
     android:paddingBottom="12dp">
 
-    <!-- Header & Identity Setup -->
+    <!-- Terminal Header Banner -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+        android:gravity="center"
+        android:paddingBottom="8dp"
+        android:text="[ SYSTEM LOG: BLE MESH PROTOCOL v1.0 ]"
+        android:textColor="#00FF66"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        tools:ignore="HardcodedText" />
+
+    <!-- Identity & Control Box -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_terminal_box"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:padding="8dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="My ID: "
+            android:fontFamily="monospace"
+            android:text="NODE_ID: "
+            android:textColor="#00FF66"
+            android:textSize="14sp"
             android:textStyle="bold"
-            android:textSize="16sp" />
+            tools:ignore="HardcodedText" />
 
         <EditText
             android:id="@+id/etMyDeviceId"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:minHeight="48dp"
             android:layout_weight="1"
-            android:hint="e.g. A, B, or C"
+            android:background="@null"
+            android:fontFamily="monospace"
+            android:hint="A / B / C"
             android:importantForAutofill="no"
             android:inputType="textCapCharacters"
-            android:textSize="16sp"
+            android:minHeight="48dp"
+            android:textColor="#00FF66"
+            android:textColorHint="#006622"
+            android:textSize="15sp"
             tools:ignore="HardcodedText" />
 
         <Button
             android:id="@+id/btnStartMesh"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="#003311"
+            android:fontFamily="monospace"
             android:minHeight="48dp"
-            android:text="Start Mesh"
+            android:text="[ INIT NODE ]"
+            android:textColor="#00FF66"
             tools:ignore="HardcodedText" />
     </LinearLayout>
 
@@ -49,93 +75,113 @@
         android:id="@+id/tvPeerCount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Discovered Peers: 0"
-        android:textColor="#555555"
-        android:paddingTop="4dp"
+        android:fontFamily="monospace"
+        android:paddingTop="6dp"
         android:paddingBottom="8dp"
+        android:text="ACTIVE_PEERS: 0"
+        android:textColor="#00CC44"
+        android:textSize="12sp"
         tools:ignore="HardcodedText" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#CCCCCC" />
-
-    <!-- Chat Messages View -->
+    <!-- Chat/Payload Messages View -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMessages"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp" />
+        android:background="@drawable/bg_terminal_box"
+        android:padding="8dp" />
 
-    <!-- Message Inputs -->
+    <!-- Packet Transmit Panel -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_terminal_box"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:padding="6dp">
 
         <EditText
             android:id="@+id/etTargetId"
-            android:layout_width="60dp"
+            android:layout_width="65dp"
             android:layout_height="wrap_content"
-            android:minHeight="48dp"
-            android:hint="To ID"
+            android:background="@null"
+            android:fontFamily="monospace"
+            android:hint="DEST"
             android:importantForAutofill="no"
             android:inputType="textCapCharacters"
+            android:minHeight="48dp"
+            android:textColor="#00FF66"
+            android:textColorHint="#006622"
+            android:textSize="13sp"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:text="> "
+            android:textColor="#00FF66"
+            android:textSize="16sp"
+            android:textStyle="bold"
             tools:ignore="HardcodedText" />
 
         <EditText
             android:id="@+id/etMessageText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:minHeight="48dp"
             android:layout_weight="1"
-            android:hint="Type message..."
+            android:background="@null"
+            android:fontFamily="monospace"
+            android:hint="payload_data..."
             android:importantForAutofill="no"
             android:inputType="textShortMessage"
+            android:minHeight="48dp"
+            android:textColor="#00FF66"
+            android:textColorHint="#006622"
+            android:textSize="13sp"
             tools:ignore="HardcodedText" />
 
         <Button
             android:id="@+id/btnSend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="#003311"
+            android:fontFamily="monospace"
             android:minHeight="48dp"
-            android:text="Send"
+            android:text="[ TX ]"
+            android:textColor="#00FF66"
             tools:ignore="HardcodedText" />
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#CCCCCC"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp" />
-
-    <!-- Mesh Debug Console -->
+    <!-- Cyber Console Header -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Live Mesh Logs:"
+        android:layout_marginTop="8dp"
+        android:fontFamily="monospace"
+        android:text="SYS_LOGS //"
+        android:textColor="#00FF66"
+        android:textSize="11sp"
         android:textStyle="bold"
-        android:textSize="12sp"
         tools:ignore="HardcodedText" />
 
     <ScrollView
         android:id="@+id/scrollLogs"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:background="#1E1E1E"
+        android:layout_height="110dp"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/bg_terminal_box"
         android:padding="6dp">
 
         <TextView
             android:id="@+id/tvLogs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="#00FF00"
             android:fontFamily="monospace"
-            android:textSize="11sp" />
+            android:textColor="#00FF66"
+            android:textSize="10sp" />
     </ScrollView>
 
 </LinearLayout>
