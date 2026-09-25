@@ -1,19 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:paddingLeft="12dp"
+    android:paddingTop="24dp"
+    android:paddingRight="12dp"
+    android:paddingBottom="12dp">
+
+    <!-- Header & Identity Setup -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="My ID: "
+            android:textStyle="bold"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/etMyDeviceId"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:layout_weight="1"
+            android:hint="e.g. A, B, or C"
+            android:importantForAutofill="no"
+            android:inputType="textCapCharacters"
+            android:textSize="16sp"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/btnStartMesh"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="Start Mesh"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/tvPeerCount"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:text="Discovered Peers: 0"
+        android:textColor="#555555"
+        android:paddingTop="4dp"
+        android:paddingBottom="8dp"
+        tools:ignore="HardcodedText" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#CCCCCC" />
+
+    <!-- Chat Messages View -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMessages"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp" />
+
+    <!-- Message Inputs -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <EditText
+            android:id="@+id/etTargetId"
+            android:layout_width="60dp"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:hint="To ID"
+            android:importantForAutofill="no"
+            android:inputType="textCapCharacters"
+            tools:ignore="HardcodedText" />
+
+        <EditText
+            android:id="@+id/etMessageText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:layout_weight="1"
+            android:hint="Type message..."
+            android:importantForAutofill="no"
+            android:inputType="textShortMessage"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/btnSend"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="Send"
+            tools:ignore="HardcodedText" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#CCCCCC"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Mesh Debug Console -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Live Mesh Logs:"
+        android:textStyle="bold"
+        android:textSize="12sp"
+        tools:ignore="HardcodedText" />
+
+    <ScrollView
+        android:id="@+id/scrollLogs"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#1E1E1E"
+        android:padding="6dp">
+
+        <TextView
+            android:id="@+id/tvLogs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#00FF00"
+            android:fontFamily="monospace"
+            android:textSize="11sp" />
+    </ScrollView>
+
+</LinearLayout>
