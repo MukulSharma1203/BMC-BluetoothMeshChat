@@ -41,6 +41,12 @@ public class GattServer {
             }
 
             @Override
+            public void onMtuChanged(BluetoothDevice device, int mtu) {
+                super.onMtuChanged(device, mtu);
+                Log.d(TAG, "GattServer MTU changed to: " + mtu + " for device " + device.getAddress());
+            }
+
+            @Override
             public void onCharacteristicWriteRequest(BluetoothDevice device, int requestId,
                                                      BluetoothGattCharacteristic characteristic,
                                                      boolean preparedWrite, boolean responseNeeded,
@@ -80,7 +86,7 @@ public class GattServer {
 
         service.addCharacteristic(characteristic);
         gattServer.addService(service);
-        Log.d(TAG, "GATT Server started and service added.");
+        Log.d(TAG, "GATT Server started.");
     }
 
     @SuppressLint("MissingPermission")
